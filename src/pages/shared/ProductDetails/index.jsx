@@ -22,6 +22,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { requestDeleteProduct } from "../../../store/actions/productAction";
+import { BASE_URL } from "../../../utils/constants";
 const customGridBreakpoints = createTheme({
     breakpoints: {
         values: {
@@ -110,7 +111,7 @@ const ProductDetails = () => {
                             <Grid container spacing={4}>
                                 <Grid item sm={12} md={6}>
                                     <img
-                                        src={`http://localhost:8080/files/${currentProduct.image}`}
+                                        src={`${BASE_URL}files/${currentProduct.image}`}
                                         className={classes.media}
                                         alt=""
                                     />

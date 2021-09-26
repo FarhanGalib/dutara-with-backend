@@ -27,6 +27,7 @@ import {
 } from "@mui/material";
 
 import { useHistory } from "react-router";
+import { BASE_URL } from "../../../utils/constants";
 
 const useStyles = makeStyles((theme) => ({
     table: { minWidth: 250 },
@@ -118,7 +119,7 @@ const Cart = () => {
                                                           height: "150px",
                                                           objectFit: "contain",
                                                       }}
-                                                      src={`http://localhost:8080/files/${item.productId.image}`}
+                                                      src={`${BASE_URL}files/${item.productId.image}`}
                                                       alt=""
                                                   />
                                               </TableCell>

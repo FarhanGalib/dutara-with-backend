@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../../utils/constants";
 import { actionTypes } from "../actionTypes";
 import { setLoader } from "./loaderAction";
 
@@ -6,7 +7,7 @@ import { setLoader } from "./loaderAction";
 export const requestAddNewProduct = (newProduct, token) => {
     return async (dispatch) => {
         const pro = await axios.post(
-            "http://localhost:8080/products",
+            `${BASE_URL}products`,
             {
                 title: newProduct.title,
                 price: parseInt(newProduct.price),
@@ -39,7 +40,7 @@ export const setProductList = (productList) => {
 export const requestProductList = (token) => {
     return async (dispatch, store) => {
         dispatch(setLoader(true));
-        const { data } = await axios.get("http://localhost:8080/products", {
+        const { data } = await axios.get(`${BASE_URL}products`, {
             headers: {
                 authorization: `bearer ${token}`,
             },
@@ -53,7 +54,7 @@ export const requestProductList = (token) => {
 //Delete Product
 export const requestDeleteProduct = (id, token) => {
     return async (dispatch) => {
-        await axios.delete(`http://localhost:8080/products/${id}`, {
+        await axios.delete(`${BASE_URL}products/${id}`, {
             headers: {
                 authorization: `bearer ${token}`,
             },
@@ -73,7 +74,7 @@ export const requestSingleProduct = (id, token) => {
     return async (dispatch) => {
         dispatch(setLoader(true));
         const { data } = await axios.get(
-            `http://localhost:8080/products/${id}`,
+            `${BASE_URL}products/${id}`,
             {
                 headers: {
                     authorization: `bearer ${token}`,
@@ -96,7 +97,7 @@ export const requestUpdateProduct = (
     return async (dispatch) => {
         if (isImageChanged) {
             const { data } = await axios.patch(
-                `http://localhost:8080/products/${id}`,
+                `${BASE_URL}products/${id}`,
                 {
                     title: currentProduct.title,
                     price: parseInt(currentProduct.price),
@@ -115,7 +116,7 @@ export const requestUpdateProduct = (
         }
         else{
             const { data } = await axios.patch(
-                `http://localhost:8080/products/${id}`,
+                `${BASE_URL}products/${id}`,
                 {
                     title: currentProduct.title,
                     price: parseInt(currentProduct.price),

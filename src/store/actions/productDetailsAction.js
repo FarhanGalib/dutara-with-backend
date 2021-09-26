@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../../utils/constants";
 import { actionTypes } from "../actionTypes";
 import { setLoader } from "./loaderAction";
 
@@ -13,7 +14,7 @@ export const requestSingleProduct = (id, token) => {
         dispatch(setLoader(true));
 
         const {data}  = await axios.get(
-            "http://localhost:8080/products/"+id,
+            `${BASE_URL}products/${id}`,
             {
                 headers: {
                     authorization: `bearer ${token}`,

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../../utils/constants";
 import { actionTypes } from "../actionTypes";
 import { setLoader } from "./loaderAction";
 import { requestOrdersByUser } from './orderActon';
@@ -22,7 +23,7 @@ export const requestCartList = (token) => {
     return async (dispatch) => {
         dispatch(setLoader(true));
 
-        const { data } = await axios.get("http://localhost:8080/cart", {
+        const { data } = await axios.get(`${BASE_URL}cart`, {
             headers: {
                 authorization: `bearer ${token}`,
             },
@@ -35,7 +36,7 @@ export const requestCartList = (token) => {
 
 export const requestAddCartItem = (productId, token) => {
     return async (dispatch) => {
-        const { data } = await axios.post("http://localhost:8080/cart",{
+        const { data } = await axios.post(`${BASE_URL}cart`,{
             product:{
                 id: productId,
                 quantity : 1
@@ -54,7 +55,7 @@ export const requestAddCartItem = (productId, token) => {
 
 export const requestAddCartItemSignin = (productId, token) => {
     return async (dispatch) => {
-        const { data } = await axios.post("http://localhost:8080/cart",{
+        const { data } = await axios.post(`${BASE_URL}cart`,{
             product:{
                 id: productId,
                 quantity : 1
@@ -73,7 +74,7 @@ export const requestAddCartItemSignin = (productId, token) => {
 export const setCartProductQuantity=(type, productId, quantity, token)=>{
    
     return async (dispatch) => {
-        const {data} = await axios.post("http://localhost:8080/cart",{
+        const {data} = await axios.post(`${BASE_URL}cart`,{
             product:{
                 id: productId,
                 quantity : type==="increment"? quantity+1: quantity>1?quantity-1:1,
@@ -92,7 +93,7 @@ export const setCartProductQuantity=(type, productId, quantity, token)=>{
 //product Details
 export const requestAddToCart = (productId,quantity,token)=>{
     return async (dispatch) => {
-        const {data} = await axios.post("http://localhost:8080/cart",{
+        const {data} = await axios.post(`${BASE_URL}cart`,{
             product:{
                 id: productId,
                 quantity : quantity,
@@ -109,7 +110,7 @@ export const requestAddToCart = (productId,quantity,token)=>{
 
 export const deleteProductFromCart =(productId,token)=>{
     return async (dispatch) => {
-        const {data} = await axios.post("http://localhost:8080/cart",{
+        const {data} = await axios.post(`${BASE_URL}cart`,{
             product:{
                 id: productId,
                 quantity : 0,
@@ -126,7 +127,7 @@ export const deleteProductFromCart =(productId,token)=>{
 
 export const requestCheckOut = (token) => {
     return async (dispatch) => {
-        const { data } = await axios.get("http://localhost:8080/order/checkout", {
+        const { data } = await axios.get(`${BASE_URL}order/checkout`, {
             headers: {
                 authorization: `bearer ${token}`,
             },

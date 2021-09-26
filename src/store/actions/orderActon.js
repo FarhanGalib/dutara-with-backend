@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../../utils/constants";
 import { actionTypes } from "../actionTypes";
 import { setLoader } from "./loaderAction";
 
@@ -13,7 +14,7 @@ export const requestOrderList = (token) => {
     return async (dispatch) => {
         dispatch(setLoader(true));
 
-        const { data } = await axios.get("http://localhost:8080/order", {
+        const { data } = await axios.get(`${BASE_URL}order`, {
             headers: {
                 authorization: `bearer ${token}`,
             },
@@ -27,7 +28,7 @@ export const requestOrderList = (token) => {
 export const requestChangeOrderStatus = (orderId, status, token) => {
     return async (dispatch) => {
         const { data } = await axios.patch(
-            `http://localhost:8080/order/${orderId}`,
+            `${BASE_URL}order/${orderId}`,
             {
                 status: status
             },
@@ -58,7 +59,7 @@ export const requestOrdersByUser=(token)=>{
     return async (dispatch) => {
         dispatch(setLoader(true));
         const { data } = await axios.get(
-            `http://localhost:8080/order/my-order`,
+            `${BASE_URL}order/my-order`,
             {
                 headers: {
                     authorization: `bearer ${token}`,

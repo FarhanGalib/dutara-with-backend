@@ -29,6 +29,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { setSearchText } from "../../../store/actions/searchAction";
 import { requestCategoryList } from "../../../store/actions/categoryAction";
 import Pagination1 from "../../../components/Pagination";
+import { BASE_URL } from "../../../utils/constants";
 const theme = createTheme();
 
 ///////////////////////////////////////////////
@@ -192,7 +193,7 @@ const Products = () => {
                                                 />
 
                                                 <img
-                                                    src={`http://localhost:8080/files/${product.image}`}
+                                                    src={`${BASE_URL}files/${product.image}`}
                                                     style={{
                                                         height: "200px",
                                                         margin: "auto",
@@ -326,7 +327,7 @@ const Products = () => {
                                                 />
 
                                                 <img
-                                                    src={`http://localhost:8080/files/${product.image}`}
+                                                    src={`${BASE_URL}files/${product.image}`}
                                                     style={{
                                                         height: "200px",
                                                         margin: "auto",

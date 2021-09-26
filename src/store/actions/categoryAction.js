@@ -1,11 +1,12 @@
 import axios from "axios";
+import { BASE_URL } from "../../utils/constants";
 import { actionTypes } from "../actionTypes";
 import { setLoader } from "./loaderAction";
 
 export const requestAddNewCategory = (newCategory, token) => {
     return async (dispatch) => {
         const {data} =await axios.post(
-            "http://localhost:8080/category",
+            `${BASE_URL}category`,
 
             {
                 name: newCategory.name,
@@ -42,7 +43,7 @@ export const setCategoryList = (categoryList) => {
 export const requestCategoryList = () => {
     return async (dispatch) => {
        dispatch(setLoader(true));
-        const { data } = await axios.get("http://localhost:8080/category");
+        const { data } = await axios.get(`${BASE_URL}category`);
         dispatch(setLoader(false));
         dispatch(setCategoryList(data));
         dispatch(setFilterByCategory(data));
@@ -52,7 +53,7 @@ export const requestCategoryList = () => {
 
 export const requestDeleteCategory = (id, token) => {
     return async (dispatch) => {
-       await axios.delete(`http://localhost:8080/category/${id}`, {
+       await axios.delete(`${BASE_URL}category/${id}`, {
             headers: {
                 authorization: `bearer ${token}`,
             },
@@ -63,7 +64,7 @@ export const requestDeleteCategory = (id, token) => {
 
 export const requestUpdateCategory = (id, category, token) => {
     return async (dispatch) => {
-        await axios.patch(`http://localhost:8080/category/${id}`, category, {
+        await axios.patch(`${BASE_URL}category/${id}`, category, {
             headers: {
                 authorization: `bearer ${token}`,
             },
@@ -84,7 +85,7 @@ export const setSingleCategoryForEdit = (singleCategory) => {
 }
 export const requestSingleCategory = (id, token) => {
     return async (dispatch) => {
-        const {data} = await axios.get(`http://localhost:8080/category/${id}`, {
+        const {data} = await axios.get(`${BASE_URL}category/${id}`, {
             headers: {
                 authorization: `bearer ${token}`,
             },

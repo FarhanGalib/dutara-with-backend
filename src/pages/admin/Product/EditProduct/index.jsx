@@ -18,6 +18,7 @@ import {
     requestSingleProduct,
     requestUpdateProduct,
 } from "../../../../store/actions/productAction";
+import { BASE_URL } from "../../../../utils/constants";
 
 const useStyles = makeStyles({});
 
@@ -105,7 +106,7 @@ const EditProduct = () => {
                             src={
                                 isImageChanged
                                     ? baseImage
-                                    : `http://localhost:8080/files/${currentProduct?.image}`
+                                    : `${BASE_URL}files/${currentProduct?.image}`
                             }
                             alt=""
                             style={{objectFit: "contain", height:"400px"}}

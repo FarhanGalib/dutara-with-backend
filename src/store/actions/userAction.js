@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../../utils/constants";
 import { actionTypes } from "../actionTypes";
 import { setLoader } from "./loaderAction";
 
@@ -26,7 +27,7 @@ export const requestAddNewUser = (newUser) => {
     } = newUser;
 
     return async (dispatch) => {
-        const { data } = await axios.post("http://localhost:8080/signup", {
+        const { data } = await axios.post(`${BASE_URL}signup`, {
             email: email,
             username: username,
             password: password,
@@ -61,7 +62,7 @@ export const setUserList = (userList)=>{
 export const requestUserList = (token) => {
     return async (dispatch) => {
         dispatch(setLoader(true));
-        const { data } = await axios.get("http://localhost:8080/user/", {
+        const { data } = await axios.get(`${BASE_URL}user/`, {
             headers: {
                 authorization: `bearer ${token}`,
             },
@@ -78,7 +79,7 @@ export const requestUserList = (token) => {
 
 export const requestDeleteSingleUser = (id,token) => {
     return async (dispatch) => {
-        const { data } = await axios.delete(`http://localhost:8080/user/${id}`, {
+        const { data } = await axios.delete(`${BASE_URL}user/${id}`, {
             headers: {
                 authorization: `bearer ${token}`,
             },
@@ -104,7 +105,7 @@ export const requestSingleUserInfo = (id,token) => {
     return async (dispatch) => {
         dispatch(setLoader(true));
 
-        const { data } = await axios.get(`http://localhost:8080/user/${id}`, {
+        const { data } = await axios.get(`${BASE_URL}user/${id}`, {
             headers: {
                 authorization: `bearer ${token}`,
             },
@@ -122,7 +123,7 @@ export const requestSingleUserInfo = (id,token) => {
 
 export const requestUserUpdate = (id,token, currentUserUpdatedInfo) => {
     return async (dispatch) => {
-        const { data } = await axios.patch(`http://localhost:8080/user/${id}`,
+        const { data } = await axios.patch(`${BASE_URL}user/${id}`,
         {
             address: {
                 geolocation: {
@@ -155,7 +156,7 @@ export const requestUserUpdate = (id,token, currentUserUpdatedInfo) => {
 
 export const requestAddNewUserByAdmin =(newUserInfo,token)=>{
     return async (dispatch)=>{
-        await axios.post("http://localhost:8080/user",
+        await axios.post(`${BASE_URL}user`,
         {
             address: {
                 geolocation: {
@@ -197,7 +198,7 @@ export const requestUserInfoByUser=(token)=>{
     return async (dispatch) => {
         dispatch(setLoader(true));
 
-        const {data} =await axios.get("http://localhost:8080/my-detail",
+        const {data} =await axios.get(`${BASE_URL}my-detail`,
         {
             headers: {
                 authorization: `bearer ${token}`,
@@ -216,7 +217,7 @@ export const requestUserInfoByUser=(token)=>{
 
 export const requestUpdateUserInfo=(userInfo, token)=>{
     return async () =>{
-        const {data}=await axios.patch(`http://localhost:8080/my-detail`,
+        const {data}=await axios.patch(`${BASE_URL}my-detail`,
         {
             address: {
                 geolocation: {

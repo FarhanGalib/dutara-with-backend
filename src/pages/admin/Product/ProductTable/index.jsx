@@ -19,6 +19,7 @@ import {
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { requestDeleteProduct, requestProductList } from "../../../../store/actions/productAction";
+import { BASE_URL } from "../../../../utils/constants";
 
 const useStyles = makeStyles((theme) => ({
     table: { minWidth: 650 },
@@ -38,7 +39,7 @@ const ProductTable = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [reload, setReload] = useState(true);
-    const BASE_URL = "http://localhost:8080";
+    
     useEffect(() => {
         dispatch(requestProductList(token));
     }, [reload]);
@@ -79,7 +80,7 @@ const ProductTable = () => {
                                             <TableCell component="th" scope="row" >
                                                <div className={classes.title}>
                                                <img
-                                                    src={BASE_URL+"/files/"+product.image}
+                                                    src={BASE_URL+"files/"+product.image}
                                                     alt="img"
                                                     style={{height:"100px", objectFit: "contain"}}
                                                     className={classes.img}

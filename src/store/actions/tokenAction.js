@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL } from "../../utils/constants";
 import { actionTypes } from "../actionTypes";
 
 export const setToken = (currentUser) => {
@@ -15,7 +16,7 @@ export const setError = (error) => {
 };
 export const requestSignIn = (signInInfo) => {
     return async (dispatch) => {
-        const { data } = await axios.post("http://localhost:8080/signin", {
+        const { data } = await axios.post(`${BASE_URL}signin`, {
             email: signInInfo.email,
             password: signInInfo.password,
         });

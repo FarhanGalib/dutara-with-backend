@@ -24,6 +24,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SignInPhoto from "./photo/shopping.jpg";
 import axios from "axios";
+import { BASE_URL } from "../../../utils/constants";
 
 const theme = createTheme();
 
@@ -46,7 +47,7 @@ export default function SignIn() {
         e.preventDefault();
         dispatch(requestSignIn(signInInfo));
         axios
-            .post("http://localhost:8080/signin", signInInfo)
+            .post(`${BASE_URL}signin`, signInInfo)
             .then(({ data }) => {
                 if (data.message === "Logged in Successfully") {
                     dispatch(setToken(data));
