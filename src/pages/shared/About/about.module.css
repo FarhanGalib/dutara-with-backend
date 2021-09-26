@@ -1,0 +1,15 @@
+.about_container{
+    
+    /* width:100%; */
+    /* object-fit: cover; */
+    /* opacity: .4; */
+
+    /* background-image: url("./about.webp");  */
+}
+.about_image{
+   
+    height:700px;
+    width:100%;
+    object-fit: cover;
+    
+}
